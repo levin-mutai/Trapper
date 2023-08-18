@@ -8,3 +8,11 @@ class ExampleSpider(scrapy.Spider):
 
     def parse(self, response):
         pass
+
+class TitleSpider(scrapy.Spider):
+    name = "title"
+    allowed_domains = ["example.com"]
+    start_urls = ["https://example.com"]
+
+    def parse(self, response):
+        pass
