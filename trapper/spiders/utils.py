@@ -24,3 +24,9 @@ def get_category(url:str) -> str:
         return segment
     else:
         return "general"
+    
+
+# TODO: add a function to get date of the post from the url path    
+
+
+

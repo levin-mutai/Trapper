@@ -30,7 +30,7 @@ class CnnGeneralSpider(scrapy.Spider):
             link = article.css("a").attrib["href"]  
             yield {
                 "headline": headline,
-                "link": link,
+                "link": response.urljoin(link),
                 "source": "CNN",
                 "category": get_category(response.url),
                 "datetime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),   
