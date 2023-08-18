@@ -33,5 +33,9 @@ class CnnGeneralSpider(scrapy.Spider):
                 "link": response.urljoin(link),
                 "source": "CNN",
                 "category": get_category(response.url),
-                "datetime": get_date_from_url(link,"cnn") if get_date_from_url(link,"cnn") else datetime.date.today().strftime("%Y-%m-%d"),   
+                "datetime": get_date_from_url(response.urljoin(link),"cnn") if get_date_from_url(response.urljoin(link),"cnn") else datetime.date.today().strftime("%Y-%m-%d"),   
             }
+
+            
+            
+            

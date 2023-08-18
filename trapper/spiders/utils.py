@@ -57,8 +57,6 @@ def get_date_from_url(url:str, newsite:str) -> str:
 
         parsed_date = datetime.strptime(extracted_date, date_format)
     
-        print("Extracted Date:", parsed_date)
+        return parsed_date.strftime("%Y-%m-%d")
     else:
-        print("Date not found.")
-
-
+        return None
