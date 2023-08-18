@@ -1,6 +1,13 @@
 
+from datetime import datetime
 from urllib.parse import urlparse
 import re
+from enum import Enum, auto
+
+class NewSite(Enum):
+    cnn = auto()
+    reuters = auto()
+    
 
 def get_baeurl(url):
     """
@@ -28,5 +35,30 @@ def get_category(url:str) -> str:
 
 # TODO: add a function to get date of the post from the url path    
 
+def get_date_from_url(url:str, newsite:str) -> str:
+    """
+    function to get date of the post from the url path
+    """
+    pattern = ""
+    date_format = ""
+    website_name = "reuters"
+
+    if website_name == "reuters":
+        pattern = r"(\d{4}-\d{2}-\d{2})"
+        date_format = "%Y-%m-%d"
+    elif website_name == "cnn":
+        pattern = r"/(\d{4}/\d{2}/\d{2})/"
+        date_format = "%Y/%m/%d"
+
+
+    match = re.search(pattern, url)
+    if match:
+        extracted_date = match.group(1)
+
+        parsed_date = datetime.strptime(extracted_date, date_format)
+    
+        print("Extracted Date:", parsed_date)
+    else:
+        print("Date not found.")
 
 

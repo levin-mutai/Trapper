@@ -1,5 +1,5 @@
 import scrapy
-from .utils import get_category
+from .utils import get_category,get_date_from_url
 import datetime
 
 
@@ -30,5 +30,5 @@ class ReutersSpider(scrapy.Spider):
                 "link": response.urljoin(link),
                 "source": "reuters",
                 "category": get_category(response.url),
-                "datetime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),   
+                "datetime": get_date_from_url(response.urljoin(link),'reuters') if get_date_from_url(response.urljoin(link),'reuters') else datetime.date.today().strftime("%Y-%m-%d"),   
             }

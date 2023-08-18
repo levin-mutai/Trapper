@@ -1,6 +1,6 @@
 import scrapy
 import datetime
-from .utils import get_category
+from .utils import get_category,get_date_from_url
 
 class CnnGeneralSpider(scrapy.Spider):
     name = "cnn"
@@ -33,5 +33,5 @@ class CnnGeneralSpider(scrapy.Spider):
                 "link": response.urljoin(link),
                 "source": "CNN",
                 "category": get_category(response.url),
-                "datetime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),   
+                "datetime": get_date_from_url(link,"cnn") if get_date_from_url(link,"cnn") else datetime.date.today().strftime("%Y-%m-%d"),   
             }
