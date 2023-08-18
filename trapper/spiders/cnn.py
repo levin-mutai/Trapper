@@ -2,10 +2,10 @@ import scrapy
 import datetime
 
 
-class CnnSpider(scrapy.Spider):
-    name = "cnn"
+class CnnGeneralSpider(scrapy.Spider):
+    name = "cnn-general"
     allowed_domains = ["edition.cnn.com"]
-    start_urls = ["https://edition.cnn.com/world"]
+    start_urls = ["https://edition.cnn.com"]
 
     def parse(self, response):
         articles = response.css("a.container__link")
@@ -18,5 +18,30 @@ class CnnSpider(scrapy.Spider):
                 "headline": headline,
                 "link": link,
                 "source": "CNN",
+                "category": "general",
+                "datetime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),   
+            }
+
+class CnnBusinessSpider(scrapy.Spider):
+    '''
+    spider to scrap all business articles from cnn
+    
+    '''
+    name = "cnn-business"
+    allowed_domains = ["edition.cnn.com"]
+    start_urls = ["https://edition.cnn.com/business"]
+
+    def parse(self, response):
+        articles = response.css("a.container__link")
+        
+        for article in articles:
+            headline = article.css("span::text").get()
+            print(headline)
+            link = article.css("a").attrib["href"]  
+            yield {
+                "headline": headline,
+                "link": link,
+                "source": "CNN",
+                "category": "business",
                 "datetime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),   
             }
