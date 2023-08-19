@@ -5,7 +5,20 @@ from .utils import get_category, get_date_from_url
 class SkynewsSpider(scrapy.Spider):
     name = "skynews"
     allowed_domains = ["news.sky.com"]
-    start_urls = ["https://news.sky.com"]
+    start_urls = [
+        "https://news.sky.com",
+        "https://news.sky.com/uk",
+        "https://news.sky.com/us",
+        "https://news.sky.com/politics",
+        "https://news.sky.com/business",
+        "https://news.sky.com/technology",
+        "https://news.sky.com/world",
+        "https://news.sky.com/entertainment",
+        "https://news.sky.com/strangenews",
+        "https://news.sky.com/climate",
+        "https://news.sky.com/weather",
+        "https://news.sky.com/data-and-forensics",        
+        ]
 
     def parse(self, response):
         articles = response.css('div.sdc-site-tiles__item')
