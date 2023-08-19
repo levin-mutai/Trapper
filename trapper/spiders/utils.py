@@ -9,9 +9,17 @@ class NewSite(Enum):
     reuters = auto()
 
 
-def get_baeurl(url):
+def get_baeurl(url) -> str:
     """
     Given a URL, return the base URL.
+
+    @param url: The URL to parse.
+    @return: The base URL.
+    @rtype: str
+
+    For example, given "http://www.cnn.com/some/path/here",
+    return "http://www.cnn.com"
+
     """
     return urlparse(url).scheme + "://" + urlparse(url).netloc
 
@@ -19,6 +27,12 @@ def get_baeurl(url):
 def get_category(url: str) -> str:
     """
     function to get category of article from response
+
+    @param url: url of the article
+    @return: category of the article
+
+    For example, given "http://www.cnn.com/category/path/here",
+    return "category"
 
     """
     base_url = get_baeurl(url)
@@ -37,6 +51,13 @@ def get_category(url: str) -> str:
 def get_date_from_url(url: str, newsite: str) -> str:
     """
     function to get date of the post from the url path
+
+    @param url: url of the article
+    @return: date of the article
+
+    For example, given "http://www.cnn.com/category/path/here/2020/01/01",
+    return "2020-01-01"
+
     """
     pattern = ""
     date_format = ""
@@ -57,7 +78,3 @@ def get_date_from_url(url: str, newsite: str) -> str:
         return parsed_date.strftime("%Y-%m-%d")
     else:
         return None  # type: ignore
-
-
-# a = get_date_from_url("https://www.aljazeera.com/features/2023/8/18/are-these-really-the-worlds-happiest-countries", "cnn")
-# print(a)
