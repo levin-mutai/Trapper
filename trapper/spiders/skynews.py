@@ -38,3 +38,4 @@ class SkynewsSpider(scrapy.Spider):
                 "category":"sports" if "skysports" in response.url else get_category(response.url),
                 "datetime": get_date_from_url(response.urljoin(link),'reuters') if get_date_from_url(response.urljoin(link),'reuters') else datetime.date.today().strftime("%Y-%m-%d"),   
             }
+            
