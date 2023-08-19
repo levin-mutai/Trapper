@@ -17,7 +17,8 @@ class SkynewsSpider(scrapy.Spider):
         "https://news.sky.com/strangenews",
         "https://news.sky.com/climate",
         "https://news.sky.com/weather",
-        "https://news.sky.com/data-and-forensics",        
+        "https://news.sky.com/data-and-forensics",
+        'https://www.skysports.com'        
         ]
 
     def parse(self, response):
@@ -33,7 +34,7 @@ class SkynewsSpider(scrapy.Spider):
             yield {
                 "headline": headline,
                 "link": response.urljoin(link),
-                "source": self.name,
-                "category": get_category(response.url),
+                "source": "skysports" if "skysports" in response.url else self.name,
+                "category":"sports" if "skysports" in response.url else get_category(response.url),
                 "datetime": get_date_from_url(response.urljoin(link),'reuters') if get_date_from_url(response.urljoin(link),'reuters') else datetime.date.today().strftime("%Y-%m-%d"),   
             }
