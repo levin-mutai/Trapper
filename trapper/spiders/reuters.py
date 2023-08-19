@@ -30,5 +30,5 @@ class ReutersSpider(scrapy.Spider):
                 "link": response.urljoin(link),
                 "source": "reuters",
                 "category": get_category(response.url),
-                "datetime": get_date_from_url(response.urljoin(link),self.name) if get_date_from_url(response.urljoin(link),self.name) else datetime.date.today().strftime("%Y-%m-%d"),   
+                "postdate": get_date_from_url(response.urljoin(link),self.name) if get_date_from_url(response.urljoin(link),self.name) else datetime.date.today().strftime("%Y-%m-%d"),   
             }

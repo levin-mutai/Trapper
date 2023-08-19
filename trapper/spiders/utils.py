@@ -31,9 +31,7 @@ def get_category(url:str) -> str:
         return segment
     else:
         return "general"
-    
-
-# TODO: add a function to get date of the post from the url path    
+       
 
 def get_date_from_url(url:str, newsite:str) -> str:
     """
@@ -41,22 +39,25 @@ def get_date_from_url(url:str, newsite:str) -> str:
     """
     pattern = ""
     date_format = ""
-    website_name = "reuters"
 
-    if website_name == "reuters":
+    if newsite == "reuters":
         pattern = r"(\d{4}-\d{2}-\d{2})"
         date_format = "%Y-%m-%d"
-    elif website_name == "cnn":
-        pattern = r"/(\d{4}/\d{2}/\d{2})/"
+    elif newsite == "cnn" or newsite == "aljazeera":
+        pattern = r"\d{4}/\d{1,2}/\d{1,2}"
         date_format = "%Y/%m/%d"
 
 
     match = re.search(pattern, url)
     if match:
-        extracted_date = match.group(1)
+        extracted_date = match.group(0)
 
         parsed_date = datetime.strptime(extracted_date, date_format)
     
         return parsed_date.strftime("%Y-%m-%d")
     else:
         return None
+
+
+# a = get_date_from_url("https://www.aljazeera.com/features/2023/8/18/are-these-really-the-worlds-happiest-countries", "cnn")
+# print(a)
