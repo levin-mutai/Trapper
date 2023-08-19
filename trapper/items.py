@@ -4,7 +4,8 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
-from scrapy.item import Item, Field
+from scrapy.item import Field
+
 
 class NewsItem(scrapy.Item):
     headline = Field()
@@ -14,4 +15,3 @@ class NewsItem(scrapy.Item):
     description = Field()
     category = Field()
     datetime = Field()
-  

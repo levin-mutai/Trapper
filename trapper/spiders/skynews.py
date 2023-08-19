@@ -2,6 +2,7 @@ import scrapy
 import datetime
 from .utils import get_category, get_date_from_url
 
+
 class SkynewsSpider(scrapy.Spider):
     name = "skynews"
     allowed_domains = ["news.sky.com"]
@@ -18,26 +19,27 @@ class SkynewsSpider(scrapy.Spider):
         "https://news.sky.com/climate",
         "https://news.sky.com/weather",
         "https://news.sky.com/data-and-forensics",
-        'https://www.skysports.com'        
-        ]
+        "https://www.skysports.com",
+    ]
 
     def parse(self, response):
-        articles = response.css('div.sdc-site-tiles__item')
-        
-        for article in articles:  
-            check= article.css('span.sdc-site-tile__headline-text::text').get()
-            if  check == None:
+        articles = response.css("div.sdc-site-tiles__item")
+
+        for article in articles:
+            check = article.css("span.sdc-site-tile__headline-text::text").get()
+            if check is None:
                 continue
 
-            headline =check
-            link =  article.css('h3 a').attrib["href"] 
+            headline = check
+            link = article.css("h3 a").attrib["href"]
             yield {
                 "headline": headline,
                 "link": response.urljoin(link),
                 "source": "skysports" if "skysports" in response.url else self.name,
-                "category":"sports" if "skysports" in response.url else get_category(response.url),
-                "postdate": get_date_from_url(response.urljoin(link),self.name) if get_date_from_url(response.urljoin(link),self.name) else datetime.date.today().strftime("%Y-%m-%d"),   
+                "category": "sports"
+                if "skysports" in response.url
+                else get_category(response.url),
+                "postdate": get_date_from_url(response.urljoin(link), self.name)
+                if get_date_from_url(response.urljoin(link), self.name)
+                else datetime.date.today().strftime("%Y-%m-%d"),
             }
-
-            
-            
