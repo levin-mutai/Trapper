@@ -11,10 +11,11 @@ class SkynewsSpider(scrapy.Spider):
         articles = response.css('div.sdc-site-tiles__item')
         
         for article in articles:  
-            if  article.css('span.sdc-site-tile__headline-text::text').get() == None:
+            check= article.css('span.sdc-site-tile__headline-text::text').get()
+            if  check == None:
                 continue
-            
-            headline = article.css('span.sdc-site-tile__headline-text::text').get()
+
+            headline =check
             link =  article.css('h3 a').attrib["href"] 
             yield {
                 "headline": headline,
