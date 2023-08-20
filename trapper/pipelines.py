@@ -5,9 +5,14 @@
 
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
+from itemadapter.adapter import ItemAdapter
 
 
 class TrapperPipeline:
     def process_item(self, item, spider):
-        return item
+        # Loop through item fields and convert lists to single values
+        # for key in item.fields:
+        #     if isinstance(item[key], list):
+        #         item[key] = item[key][0]
+        # return item
+        pass

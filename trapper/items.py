@@ -11,7 +11,5 @@ class NewsItem(scrapy.Item):
     headline = Field()
     source = Field()
     link = Field()
-    image_urls = Field()
-    description = Field()
     category = Field()
-    datetime = Field()
+    postdate = Field()

@@ -1,6 +1,9 @@
 import scrapy
-from .utils import get_category,get_date_from_url
+from .utils import get_category, get_date_from_url
 import datetime
+
+# from items import NewsItem
+
 
 class AljazeeraSpider(scrapy.Spider):
     name = "aljazeera"
@@ -17,20 +20,21 @@ class AljazeeraSpider(scrapy.Spider):
         "https://www.aljazeera.com/asia",
         "https://www.aljazeera.com/europe",
         "https://www.aljazeera.com/asia-pacific",
-        "https://www.aljazeera.com/latin-america",  
-        ]
+        "https://www.aljazeera.com/latin-america",
+    ]
 
     def parse(self, response):
+        articles = response.css("div.gc__content")
 
-        articles = response.css('div.gc__content')
-        
-        for article in articles:    
-            headline = article.css('h3 a span::text').get()
-            link =  article.css('h3 a').attrib["href"] 
+        for article in articles:
+            headline = article.css("h3 a span::text").get()
+            link = article.css("h3 a").attrib["href"]
             yield {
-                "headline": headline.encode('ascii', 'ignore').decode('ascii'),
+                "headline": headline.encode("ascii", "ignore").decode("ascii"),
                 "link": response.urljoin(link),
                 "source": self.name,
                 "category": get_category(response.url),
-                "postdate": get_date_from_url(response.urljoin(link),self.name) if get_date_from_url(response.urljoin(link),self.name) else datetime.date.today().strftime("%Y-%m-%d"),   
+                "postdate": get_date_from_url(response.urljoin(link), self.name)
+                if get_date_from_url(response.urljoin(link), self.name)
+                else datetime.date.today().strftime("%Y-%m-%d"),
             }
