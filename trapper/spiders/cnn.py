@@ -1,6 +1,7 @@
 import scrapy
 import datetime
-from .utils import get_category,get_date_from_url
+from .utils import get_category, get_date_from_url
+
 
 class CnnGeneralSpider(scrapy.Spider):
     name = "cnn"
@@ -20,22 +21,23 @@ class CnnGeneralSpider(scrapy.Spider):
         "https://edition.cnn.com/politics",
         "https://edition.cnn.com/style",
         "https://edition.cnn.com/weather",
-        ]
+    ]
 
     def parse(self, response):
         articles = response.css("a.container__link")
-        
+
         for article in articles:
-            headline = article.css("span::text").get()
-            link = article.css("a").attrib["href"]  
+            headline = article.css("span[data-editable='headline']::text").get()
+
+            if headline is None:
+                continue
+            link = article.css("a").attrib["href"]
             yield {
                 "headline": headline,
                 "link": response.urljoin(link),
-                "source": "CNN",
+                "source": self.name,
                 "category": get_category(response.url),
-                "postdate": get_date_from_url(response.urljoin(link), self.name) if get_date_from_url(response.urljoin(link),self.name) else datetime.date.today().strftime("%Y-%m-%d"),   
+                "postdate": get_date_from_url(response.urljoin(link), self.name)
+                if get_date_from_url(response.urljoin(link), self.name)
+                else datetime.date.today().strftime("%Y-%m-%d"),
             }
-
-            
-            
-            
