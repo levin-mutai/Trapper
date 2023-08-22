@@ -42,14 +42,4 @@ class AljazeeraSpider(scrapy.Spider):
                 if get_date_from_url(response.urljoin(link), self.name)
                 else datetime.date.today().strftime("%Y-%m-%d"),
             )
-
-            # yield {
-            #     "headline": headline.encode("ascii", "ignore").decode("ascii"),
-            #     "link": response.urljoin(link),
-            #     "source": self.name,
-            #     "category": get_category(response.url),
-            #     "postdate": get_date_from_url(response.urljoin(link), self.name)
-            #     if get_date_from_url(response.urljoin(link), self.name)
-            #     else datetime.date.today().strftime("%Y-%m-%d"),
-            # }
             yield news

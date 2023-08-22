@@ -13,6 +13,15 @@ SPIDER_MODULES = ["trapper.spiders"]
 NEWSPIDER_MODULE = "trapper.spiders"
 
 
+DATABASE = {
+    "host": "localhost",
+    "database": "trapper_db",
+    "port": "5432",
+    "username": "postgres",
+    "password": "lkm13464",
+}
+
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "trapper (+http://www.yourdomain.com)"
 

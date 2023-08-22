@@ -8,15 +8,16 @@
 from itemadapter.adapter import ItemAdapter
 import psycopg2
 from dataclasses import field
+from trapper.settings import DATABASE
 
 
 class SaveToDatabsePipeline:
     def __init__(self) -> None:
         self.conn = psycopg2.connect(
-            host="localhost",
-            database="trapper_db",
-            user="postgres",
-            password="lkm13464",
+            host=DATABASE["host"],
+            database=DATABASE["database"],
+            user=DATABASE["username"],
+            password=DATABASE["password"],
         )
 
         self.cur = self.conn.cursor()  # cursor object to execute SQL commands
