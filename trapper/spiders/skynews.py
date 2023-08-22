@@ -1,5 +1,7 @@
 import scrapy
 import datetime
+
+from trapper.items import NewsItem
 from .utils import get_category, get_date_from_url
 
 
@@ -24,7 +26,7 @@ class SkynewsSpider(scrapy.Spider):
 
     def parse(self, response):
         articles = response.css("div.sdc-site-tiles__item")
-
+        news = NewsItem()
         for article in articles:
             check = article.css("span.sdc-site-tile__headline-text::text").get()
             if check is None:
@@ -32,14 +34,13 @@ class SkynewsSpider(scrapy.Spider):
 
             headline = check
             link = article.css("h3 a").attrib["href"]
-            yield {
-                "headline": headline,
-                "link": response.urljoin(link),
-                "source": "skysports" if "skysports" in response.url else self.name,
-                "category": "sports"
-                if "skysports" in response.url
-                else get_category(response.url),
-                "postdate": get_date_from_url(response.urljoin(link), self.name)
+            news["headline"] = headline.encode("ascii", "ignore").decode("ascii")
+            news["link"] = response.urljoin(link)
+            news["source"] = self.name
+            news["category"] = get_category(response.url)
+            news["postdate"] = (
+                get_date_from_url(response.urljoin(link), self.name)
                 if get_date_from_url(response.urljoin(link), self.name)
                 else datetime.date.today().strftime("%Y-%m-%d"),
-            }
+            )
+            yield news

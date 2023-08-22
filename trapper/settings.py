@@ -13,6 +13,15 @@ SPIDER_MODULES = ["trapper.spiders"]
 NEWSPIDER_MODULE = "trapper.spiders"
 
 
+DATABASE = {
+    "host": "localhost",
+    "database": "trapper_db",
+    "port": "5432",
+    "username": "postgres",
+    "password": "lkm13464",
+}
+
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "trapper (+http://www.yourdomain.com)"
 
@@ -32,6 +41,7 @@ ROBOTSTXT_OBEY = False
 
 # Disable cookies (enabled by default)
 # COOKIES_ENABLED = False
+
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
@@ -63,7 +73,8 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "trapper.pipelines.TrapperPipeline": 100,
+    # "trapper.pipelines.TrapperPipeline": 100,
+    "trapper.pipelines.SaveToDatabsePipeline": 200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
