@@ -1,5 +1,7 @@
 import scrapy
-from .utils import get_category,get_date_from_url
+
+from trapper.items import NewsItem
+from .utils import get_category, get_date_from_url
 import datetime
 
 
@@ -17,18 +19,25 @@ class ReutersSpider(scrapy.Spider):
         "https://www.reuters.com/sports",
         "https://www.reuters.com/lifestyle",
         "https://www.reuters.com/breakingviews",
-       ]
+    ]
 
     def parse(self, response):
         articles = response.css('div[data-testid="MediaStoryCard"]')
-        
-        for article in articles:    
-            headline = article.css('h3[data-testid="Heading"] a[data-testid="Link"]::text').get()
-            link =  article.css('h3[data-testid="Heading"] a[data-testid="Link"]').attrib["href"] 
-            yield {
-                "headline": headline,
-                "link": response.urljoin(link),
-                "source": "reuters",
-                "category": get_category(response.url),
-                "postdate": get_date_from_url(response.urljoin(link),self.name) if get_date_from_url(response.urljoin(link),self.name) else datetime.date.today().strftime("%Y-%m-%d"),   
-            }
+        news = NewsItem()
+        for article in articles:
+            headline = article.css(
+                'h3[data-testid="Heading"] a[data-testid="Link"]::text'
+            ).get()
+            link = article.css(
+                'h3[data-testid="Heading"] a[data-testid="Link"]'
+            ).attrib["href"]
+            news["headline"] = headline.encode("ascii", "ignore").decode("ascii")
+            news["link"] = response.urljoin(link)
+            news["source"] = self.name
+            news["category"] = get_category(response.url)
+            news["postdate"] = (
+                get_date_from_url(response.urljoin(link), self.name)
+                if get_date_from_url(response.urljoin(link), self.name)
+                else datetime.date.today().strftime("%Y-%m-%d"),
+            )
+            yield news

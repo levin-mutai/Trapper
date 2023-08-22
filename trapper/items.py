@@ -8,8 +8,8 @@ from scrapy.item import Field
 
 
 class NewsItem(scrapy.Item):
-    headline = Field()
-    source = Field()
-    link = Field()
-    category = Field()
-    postdate = Field()
+    headline = scrapy.Field()
+    source = scrapy.Field()
+    link = scrapy.Field()
+    category = scrapy.Field()
+    postdate = scrapy.Field()

@@ -7,15 +7,7 @@
 # useful for handling different item types with a single interface
 from itemadapter.adapter import ItemAdapter
 import psycopg2
-
-
-class TrapperPipeline:
-    def process_item(self, item, spider):
-        # Loop through item fields and convert lists to single values
-        for key in item.fields:
-            print(key)
-        # return item
-        # pass
+from dataclasses import field
 
 
 class SaveToDatabsePipeline:
@@ -39,7 +31,9 @@ class SaveToDatabsePipeline:
                 source VARCHAR(255) NOT NULL,
                 category VARCHAR(255) NOT NULL,
                 postdate DATE NOT NULL,
-                UNIQUE(headline, link),
+                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(headline, link)
             );
                 
             """

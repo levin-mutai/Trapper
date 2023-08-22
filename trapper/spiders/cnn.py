@@ -1,5 +1,7 @@
 import scrapy
 import datetime
+
+from trapper.items import NewsItem
 from .utils import get_category, get_date_from_url
 
 
@@ -25,19 +27,20 @@ class CnnGeneralSpider(scrapy.Spider):
 
     def parse(self, response):
         articles = response.css("a.container__link")
-
+        news = NewsItem()
         for article in articles:
             headline = article.css("span[data-editable='headline']::text").get()
 
             if headline is None:
                 continue
             link = article.css("a").attrib["href"]
-            yield {
-                "headline": headline,
-                "link": response.urljoin(link),
-                "source": self.name,
-                "category": get_category(response.url),
-                "postdate": get_date_from_url(response.urljoin(link), self.name)
+            news["headline"] = headline.encode("ascii", "ignore").decode("ascii")
+            news["link"] = response.urljoin(link)
+            news["source"] = self.name
+            news["category"] = get_category(response.url)
+            news["postdate"] = (
+                get_date_from_url(response.urljoin(link), self.name)
                 if get_date_from_url(response.urljoin(link), self.name)
                 else datetime.date.today().strftime("%Y-%m-%d"),
-            }
+            )
+            yield news
