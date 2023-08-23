@@ -21,6 +21,17 @@ DATABASE = {
     "password": "lkm13464",
 }
 
+#LOG_LEVEL = "INFO"
+
+
+# scrapeops Configs
+SCRAPEOPS_FAKE_BROWSER_HEADER_ENABLED = True # When False, the scrapper will the default system user-agent and headers
+SCRAPEOPS_API_KEY = "3f92c092-138b-4206-8b82-007a6f02c5f4" # TODO : change this to your own key  
+SCRAPEOPS_FAKE_BROWSER_HEADER_ENDPOINT = "https://headers.scrapeops.io/v1/browser-headers"
+SCRAPEOPS_NUM_RESULTS = 30
+
+
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "trapper (+http://www.yourdomain.com)"
@@ -74,7 +85,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     # "trapper.pipelines.TrapperPipeline": 100,
-    "trapper.pipelines.SaveToDatabsePipeline": 200,
+    # "trapper.pipelines.SaveToDatabsePipeline": 200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
