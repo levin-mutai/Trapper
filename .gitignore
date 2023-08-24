@@ -1,3 +1,7 @@
 **/venv
 **/__pycache__
-
+**/build
+**/dbs
+**/logs
+**/project.egg-info
+twistd.pid
