@@ -31,10 +31,10 @@ def get_db():
 
 
 # Create MongoDB client
-client = MongoClient(host=settings.MONGO_HOST, port=settings.MONGO_PORT)
+# client = MongoClient(host=settings.MONGO_HOST, port=settings.MONGO_PORT)
 
 # Access the database
-mongodb = client[settings.MONGO_DB]
+# mongodb = client[settings.MONGO_DB]
 
 
 

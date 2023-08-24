@@ -20,5 +20,23 @@ scrapyd-client
 scrapydweb
 logparser
 
+fastapi
+SQLAlchemy
+pydantic
+pydantic[email]
+uvicorn[standard]
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]
+pytest
+python-dotenv
+alembic
+psycopg2-binary
+email-validator
+requests
+pika
+python-decouple
+pymongo
+
 # scrapyd > scrapyd_logs.txt 2>&1 &
 # pip install --no-cache-dir -r requirements.txt

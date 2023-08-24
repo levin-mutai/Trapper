@@ -13,11 +13,11 @@ MONGO_DB = config("MONGO_DB")
 
 #RELATIONAL DB CREDS(POSTGRESQL)
 
-DB_USER = config("DB_USER")
-DB_PASSWORD = config("DB_PASSWORD")
-DB_HOST = config("DB_HOST")
-DB_NAME = config("DB_NAME")
-DB_PORT = config("DB_PORT")
+DB_USER = config("postgres")
+DB_PASSWORD = config("lkm13464")
+DB_HOST = config("localhost")
+DB_NAME = config("trapper_db")
+DB_PORT = config("5432")
 
 
 

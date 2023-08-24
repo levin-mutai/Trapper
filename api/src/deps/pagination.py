@@ -1,7 +1,7 @@
 from fastapi import Request
 
 
-def get_pagination(request:Request,skip: int = 0, limit: int = 10, total_items: int =10):
+def get_pagination(request:Request,skip: int = 0, limit: int = 10, total_items: int =40):
     """
     Generates the pagination links for the response header.
     """
