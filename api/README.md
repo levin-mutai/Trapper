@@ -1,1 +1,1 @@
-API to serve data from Trapper
+ This is an API to serve data from Trapper.
