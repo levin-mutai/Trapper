@@ -5,5 +5,5 @@
 **/build
 **/dbs
 **/logs
-**/project.egg-info
+**/trapper.egg-info
 twistd.pid

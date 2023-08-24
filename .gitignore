@@ -2,7 +2,7 @@
 **/dbs
 **/build
 *.pid
-**/project.egg-info
+**/trapper.egg-info
 **/venv
 **/log/*
 **/scrapyd_logs.txt
