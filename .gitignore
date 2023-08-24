@@ -2,3 +2,5 @@
 **/dbs
 **/build
 *.pid
+**/project.egg-info
+**/venv
