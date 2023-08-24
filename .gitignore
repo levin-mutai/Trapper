@@ -1,0 +1,8 @@
+**/eggs
+**/dbs
+**/build
+*.pid
+**/trapper.egg-info
+**/venv
+**/log/*
+**/scrapyd_logs.txt
