@@ -1,0 +1,9 @@
+**/venv
+**/__pycache__
+*.json
+*.csv
+**/build
+**/dbs
+**/logs
+**/trapper.egg-info
+twistd.pid

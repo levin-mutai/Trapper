@@ -1,9 +1,8 @@
-**/venv
-**/__pycache__
-*.json
-*.csv
-**/build
+**/eggs
 **/dbs
-**/logs
-**/project.egg-info
-twistd.pid
+**/build
+*.pid
+**/trapper.egg-info
+**/venv
+**/log/*
+**/scrapyd_logs.txt
