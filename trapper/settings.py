@@ -73,6 +73,7 @@ ROBOTSTXT_OBEY = False
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     "trapper.middlewares.TrapperDownloaderMiddleware": 543,
+    
 }
 
 # Enable or disable extensions
