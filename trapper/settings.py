@@ -74,6 +74,7 @@ ROBOTSTXT_OBEY = False
 DOWNLOADER_MIDDLEWARES = {
     "trapper.middlewares.TrapperDownloaderMiddleware": 543,
     "trapper.middlewares.ScrapeOpsFakeHeadersMiddleware": 400,
+    
 }
 
 # Enable or disable extensions

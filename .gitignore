@@ -2,3 +2,8 @@
 **/__pycache__
 *.json
 *.csv
+**/build
+**/dbs
+**/logs
+**/project.egg-info
+twistd.pid
