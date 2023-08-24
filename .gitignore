@@ -1,0 +1,4 @@
+**/eggs
+**/dbs
+**/build
+*.pid
