@@ -37,6 +37,3 @@ requests
 pika
 python-decouple
 pymongo
-
-# scrapyd > scrapyd_logs.txt 2>&1 &
-# pip install --no-cache-dir -r requirements.txt
