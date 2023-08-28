@@ -9,7 +9,7 @@ from config.settings import DEBUG,ORIGINS
 # to create all the tables using the already defined schema
 models.Base.metadata.create_all(bind=Engine) # type: ignore
 
-app = FastAPI(debug=DEBUG, title="LeFla-Properties API", version="0.1.0")
+app = FastAPI(debug=DEBUG, title="Trapper News API", version="0.1.0")
 
 # add CORS middleware
 app.add_middleware(

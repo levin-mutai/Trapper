@@ -5,12 +5,12 @@ from fastapi import (
     status,
     BackgroundTasks
 )
-from api.src.deps.pagination import get_pagination
-from api.src.models.models import News
+from deps.pagination import get_pagination
+from models.models import News
 from database import get_db
 from sqlalchemy.orm import Session
 
-from api.src.utils.utils import paginate, response
+from utils.utils import paginate, response
 
 
 
