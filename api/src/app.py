@@ -31,11 +31,6 @@ app.include_router(news)
 
 
 
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
 @app.get("/news")
 def get_news(
     source:str = Query("",description="Get news from specic Source eg. cnn or aljazeera"), 
