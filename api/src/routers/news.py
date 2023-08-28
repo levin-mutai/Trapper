@@ -39,3 +39,4 @@ def get_news_by_category(
     Get news.
     """
     return paginate(res="res",pagination=pagination)
+
