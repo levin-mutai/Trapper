@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  trapper:
+    image: trapper
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5000:5000
