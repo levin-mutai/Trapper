@@ -36,7 +36,7 @@ class AljazeeraSpider(scrapy.Spider):
             news["headline"] = headline.encode("ascii", "ignore").decode("ascii")
             news["link"] = response.urljoin(link)
             news["source"] = self.name
-            news["category"] = get_category(response.url)
+            news["category"] = "sports" if "sport" in response.url else get_category(response.url)
             news["postdate"] = (
                 get_date_from_url(response.urljoin(link), self.name)
                 if get_date_from_url(response.urljoin(link), self.name)
