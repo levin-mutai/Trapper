@@ -73,7 +73,7 @@ def get_news_by_category(
     :return: list of all the available  news. <br/>
     """
     if source:
-        news = db.query(News).filter(News.category == category,News.source == source).all()
+        news = db.query(News).filter(News.category.ilike(f"%{category}%"),News.source == source).all()
         return paginate(res=news,pagination=pagination)
 
     news = db.query(News).filter(News.category.ilike(f"%{category}%")).all()
