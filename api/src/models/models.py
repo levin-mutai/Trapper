@@ -8,10 +8,10 @@ class News(Base):
 
     id = Column(Integer, primary_key=True)
     headline  = Column(String)
-    url = Column(String)
+    link = Column(String)
     postdate = Column(DateTime)
     category = Column(String)
-    content = Column(String, nullable=True)
+    # content = Column(String, nullable=True)
     source = Column(String)
 
     # def __init__(self, title, url, date, category, content, source):

@@ -9,3 +9,13 @@ class AuthRes(BaseModel):
     is_propertymanager: bool
     is_tenant: bool
     is_landlord: bool
+
+class News(BaseModel):
+    """This is the response schema model for the news"""
+
+    id: str
+    headline: str
+    link: str
+    source: str
+    category: str
+    postdate: str
