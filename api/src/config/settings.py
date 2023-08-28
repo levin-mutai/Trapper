@@ -1,7 +1,7 @@
 from pathlib import Path
 from decouple import config
 
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = config("SECRET_KEY",default ="iufidbvss buibfeuifusnudbce uerfbiefes")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,15 +9,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 MONGO_HOST = config("MONGO_HOST", default="mongo")
 MONGO_PORT = config("MONGO_PORT", default=27017, cast=int)
-MONGO_DB = config("MONGO_DB")
+MONGO_DB = config("MONGO_DB", default="trapper_db")
 
 #RELATIONAL DB CREDS(POSTGRESQL)
 
-DB_USER = config("postgres")
-DB_PASSWORD = config("lkm13464")
-DB_HOST = config("localhost")
-DB_NAME = config("trapper_db")
-DB_PORT = config("5432")
+DB_USER = config("=DB_USER",default="postgres")
+DB_PASSWORD = config("DB_PASSWORD",default="lkm13464")
+DB_HOST = config("DB_HOST",default="localhost")
+DB_NAME = config("DB_NAME",default="trapper_db")
+DB_PORT = config("DB_PORT",default=5432,cast=int)
+
+# SECURITY CREDS(JWT)
 
 
 

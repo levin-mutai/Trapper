@@ -16,7 +16,7 @@ fi
 
 logs_dir="./logs"
 
-    # Check if logs directory exists
+# Check if logs directory exists
 if [ ! -d "$logs_dir" ]; then
     echo "Creating directory $logs_dir"
     mkdir "$logs_dir"
