@@ -12,6 +12,8 @@ from sqlalchemy.orm import Session
 from models.models import News
 from schemas.schemas import News as NewsSchema
 
+import auth
+
 
 # to create all the tables using the already defined schema
 models.Base.metadata.create_all(bind=Engine) # type: ignore
@@ -23,7 +25,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["get"],
     allow_headers=["*"],
 )
 
@@ -35,6 +37,7 @@ app.include_router(news)
 def get_news(
     source:str = Query("",description="Get news from specic Source eg. cnn or aljazeera"), 
     pagination:dict = Depends(get_pagination),
+    api_key:str = Depends(auth.get_api_key),
     db: Session = Depends(
         get_db,
     ),
@@ -50,7 +53,7 @@ def get_news(
     if source:
         news = db.query(News).filter(News.source == source).all()
         return paginate(res=news,pagination=pagination)  
-    
+    print(api_key)
     news = db.query(News).all()
     
     return paginate(res=news,pagination=pagination)  
@@ -60,6 +63,8 @@ def get_news_by_category(
     category:str,
     source:str = Query("",description="Get news from specic Source eg. cnn or aljazeera"), 
     pagination:dict = Depends(get_pagination),
+    api_key:str = Depends(auth.get_api_key),
+
     db: Session = Depends(
         get_db,
     ),
@@ -81,6 +86,7 @@ def get_news_by_category(
     return paginate(res=news,pagination=pagination)
 @app.get("/categories")
 def get_category(
+    api_key:str = Depends(auth.get_api_key),
     db: Session = Depends(
         get_db,
     ),
@@ -99,6 +105,7 @@ def get_category(
 
 @app.get("/sources")
 def get_sources(
+    api_key:str = Depends(auth.get_api_key),
     db: Session = Depends(
         get_db,
     ),
