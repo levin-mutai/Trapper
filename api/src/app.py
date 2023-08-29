@@ -12,6 +12,8 @@ from sqlalchemy.orm import Session
 from models.models import News
 from schemas.schemas import News as NewsSchema
 
+import auth
+
 
 # to create all the tables using the already defined schema
 models.Base.metadata.create_all(bind=Engine) # type: ignore

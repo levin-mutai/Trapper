@@ -13,15 +13,3 @@ class News(Base):
     category = Column(String)
     # content = Column(String, nullable=True)
     source = Column(String)
-
-    # def __init__(self, title, url, date, category, content, source):
-    #     self.title = title
-    #     self.url = url
-    #     self.date = date
-    #     self.category = category
-    #     self.content = content
-    #     self.source = source
-
-    # def __repr__(self):
-    #     return "<News(title='%s', url='%s', date='%s', category='%s', content='%s', source='%s')>" % (
-    #         self.title, self.url, self.date, self.category, self.content, self.source)
