@@ -25,7 +25,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["get"],
     allow_headers=["*"],
 )
 
@@ -53,7 +53,7 @@ def get_news(
     if source:
         news = db.query(News).filter(News.source == source).all()
         return paginate(res=news,pagination=pagination)  
-    
+    print(api_key)
     news = db.query(News).all()
     
     return paginate(res=news,pagination=pagination)  
