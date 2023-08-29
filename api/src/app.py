@@ -37,6 +37,7 @@ app.include_router(news)
 def get_news(
     source:str = Query("",description="Get news from specic Source eg. cnn or aljazeera"), 
     pagination:dict = Depends(get_pagination),
+    api_key:str = Depends(auth.get_api_key),
     db: Session = Depends(
         get_db,
     ),
@@ -62,6 +63,8 @@ def get_news_by_category(
     category:str,
     source:str = Query("",description="Get news from specic Source eg. cnn or aljazeera"), 
     pagination:dict = Depends(get_pagination),
+    api_key:str = Depends(auth.get_api_key),
+
     db: Session = Depends(
         get_db,
     ),
@@ -83,6 +86,7 @@ def get_news_by_category(
     return paginate(res=news,pagination=pagination)
 @app.get("/categories")
 def get_category(
+    api_key:str = Depends(auth.get_api_key),
     db: Session = Depends(
         get_db,
     ),
@@ -101,6 +105,7 @@ def get_category(
 
 @app.get("/sources")
 def get_sources(
+    api_key:str = Depends(auth.get_api_key),
     db: Session = Depends(
         get_db,
     ),

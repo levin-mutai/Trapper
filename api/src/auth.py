@@ -10,7 +10,7 @@ api_key_header = APIKeyHeader(name="access_token", auto_error=False)
 
 
 async def get_api_key(api_key_header: str = Security(api_key_header)):
-    if api_key_header == config["API_KEY",default="iufidbvss buibfeuifusnudbce uerfbiefes"]: # type: ignore
+    if api_key_header == config("SECRET_KEY",default="iufidbvss buibfeuifusnudbce uerfbiefes"): # type: ignore
         return api_key_header   
     else:
         raise HTTPException(
