@@ -10,7 +10,6 @@
 - [Directory Structure](#directory-structure)
 - [Features](#features)
 - [Technologies](#technologies)
-<!-- - [Contributing](#contributing) -->
 - [License](#license)
 
 ## Project Overview
