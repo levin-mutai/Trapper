@@ -63,3 +63,15 @@ class SaveToDatabsePipeline:
     def close_spider(self, spider):
         self.cur.close()
         self.conn.close()
+
+class DeduplicationPipeline:
+    def __init__(self):
+        self.seen_headlines = set()
+
+    def process_item(self, item, spider):
+        headline = item['headline']
+        if headline not in self.seen_headlines:
+            self.seen_headlines.add(headline)
+            return item
+        else:
+            raise DropItem(f'Duplicate item found: {headline}')
