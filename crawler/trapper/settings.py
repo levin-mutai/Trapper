@@ -87,7 +87,9 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     # "trapper.pipelines.TrapperPipeline": 100,
+    'trapper.pipelines.DeduplicationPipeline': 100,
     "trapper.pipelines.SaveToDatabsePipeline": 200,
+
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
