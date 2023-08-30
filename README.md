@@ -47,6 +47,8 @@ Trapper is a news aggregation project built using Scrapy to fetch news from vari
     ./run.sh
     
     ```
+   - To access the scrapydweb ui, visit 
+    `http://0.0.0.0:8000`
 
 
 3. Set up the API:
